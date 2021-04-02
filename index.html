@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@700&display=swap" rel="stylesheet">
+    <title>Purring Cat</title>
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            outline: none;
+        }
+        .cat {
+            position: fixed;
+            left: 50px;
+            bottom: 0px;
+            cursor: pointer;
+            -webkit-user-drag: none; 
+            -khtml-user-drag: none; 
+            -moz-user-drag: none; 
+            -o-user-drag: none; 
+            user-drag: none;
+        }
+        .hover, .clicked {
+            visibility: hidden;
+        }
+        h1 {
+            position: absolute;
+            text-align: center;
+            top: 40%;
+            left: 50%;
+            width: 100%;
+            transform: translate(-50%, -50%);
+            background: white;
+            font-family: 'Quicksand', sans-serif;
+        }
+        .two, .three {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="one">I'm Bored...<br/>Give Me Belly Rub</h1>
+    <h1 class="two">Click & Rub It</h1>
+    <h1 class="three">Mmmmmmmm yes<br/>More Human.... More !</h1>
+
+    <img src="cat 1.png" class="cat idle">
+    <img src="cat 2.png" class="cat hover">
+    <img src="cat 3.png" class="cat clicked">
+
+    <script>
+        var cat = document.getElementsByClassName("cat");
+        var idle = document.getElementsByClassName("idle");
+        var hover = document.getElementsByClassName("hover");
+        var clicked = document.getElementsByClassName("clicked");
+
+        var one = document.getElementsByClassName("one");
+        var two = document.getElementsByClassName("two");
+        var three = document.getElementsByClassName("three");
+        
+        var audio = new Audio('sound.mp3');
+
+        var mobile = (/iphone|ipod|ipad|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));  
+        
+        for (var i = 0 ; i < cat.length; i++) {
+            if (mobile) {
+                cat[i].addEventListener("touchstart", function() {
+                clicked[0].style.visibility = "visible"
+                three[0].style.visibility = "visible"
+
+                audio.play();
+                })
+
+                cat[i].addEventListener("touchend", function() {
+                clicked[0].style.visibility = "hidden"
+                hover[0].style.visibility = "hidden"
+                three[0].style.visibility = "hidden"
+
+                audio.pause();
+                })
+            }
+            else {
+                for (var i = 0 ; i < cat.length; i++) {
+
+                    cat[i].addEventListener("mouseenter", function() {
+                        hover[0].style.visibility = "visible"
+                        idle[0].style.visibility = "hidden"
+                        one[0].style.visibility = "hidden"
+                        two[0].style.visibility = "visible"
+                    })
+
+                    cat[i].addEventListener("mouseleave", function() {
+                        hover[0].style.visibility = "hidden"
+                        idle[0].style.visibility = "visible"
+                        one[0].style.visibility = "visible"
+                        two[0].style.visibility = "hidden"
+                    })
+
+                    cat[i].addEventListener("mousedown", function() {
+                    clicked[0].style.visibility = "visible"
+                    three[0].style.visibility = "visible"
+
+                    audio.play();
+                    })
+
+                    cat[i].addEventListener("mouseup", function() {
+                    clicked[0].style.visibility = "hidden"
+                    three[0].style.visibility = "hidden"
+
+                    audio.pause();
+                    })
+                }
+            }
+        }
+    </script>
+</body>
+</html>
